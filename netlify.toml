@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/"
-  to = "/pages/"
+  to = "/[mobileNumber]"
   status = 301
   force = false
   query = {path = ":path"}
