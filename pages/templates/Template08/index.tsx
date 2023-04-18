@@ -49,7 +49,7 @@ const Template08 = ({ data } : any) => {
   const shareButton = async () => {
     var shareDetails = {
       // url: `${PUBLIC_URL}/${templateUserData?.mobileNumber}`,
-      url: `https://b4b0-103-238-108-255.ngrok-free.app/${data && data[0]?.mobileNumber}`,
+      url: `https://astounding-dusk-4ccccf.netlify.app/${data && data[0]?.mobileNumber}`,
       title: `${data && data[0]?.firstName} ${data && data[0]?.lastName}`,
       text: `My Services:\n${data && data[0]?.service1?.name && data && data[0]?.service1?.name}\n${data && data[0]?.service2?.name && data && data[0]?.service2?.name}\n${data && data[0]?.service3?.name && data && data[0]?.service3?.name}\n${data && data[0]?.service4?.name && data && data[0]?.service4?.name}\n`,
     };
