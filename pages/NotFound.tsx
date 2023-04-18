@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react'
-
+import Image from "next/image";
 const NotFound = () => {
   return (
     <>
@@ -19,7 +19,7 @@ const NotFound = () => {
                Page Not Found
             </div>
             <div className="nor-found-img">
-              <img
+              <Image
                 src="https://pocketsite.me/assets/images/not-found.png"
                 alt="finest-img"
                 width="540"
