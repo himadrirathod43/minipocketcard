@@ -1,13 +1,14 @@
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { InitReviewForm } from "./reviewHelper/InitReviewForm";
-import { ReviewFormValidate } from "./reviewHelper/ReviewFormValidate";
-import { ReviewFormModel } from "./reviewHelper/ReviewFormModel";
+// import ReviewFormValidate from "./reviewHelper/ReviewFormValidate";
+import * as Yup from "yup";
 import { toast } from "react-toastify";
 import SVG from "react-inlinesvg";
 import Image from "next/image";
-import { addReviews, getReviewsByTemplateID } from "./reviewHelper/ReviewModalCRUD";
+// import addReviews, { getReviewsByTemplateID } from "./reviewHelper/ReviewModalCRUD";
+// import addReviews from "./reviewHelper/ReviewModalCRUD";
+import axios from "axios";
 
  export type Props = {
   show: boolean;
@@ -15,7 +16,45 @@ import { addReviews, getReviewsByTemplateID } from "./reviewHelper/ReviewModalCR
   data: any;
 };
 
-const ReviewModal: React.FC<Props> = ({ show, handleClose, data  }) => {
+type ReviewFormModel = { 
+  mobile_number: string;
+  name: string;
+  email: string;
+  review_text: string;
+  status: string;
+  date_created: Date;
+  user_template_id: string | number | undefined;
+}
+
+const InitReviewForm = { 
+  mobile_number: "",
+  name: "",
+  email: "",
+  review_text: "",
+  status: "",
+  date_created: new Date(),
+  user_template_id: "",
+}
+
+const ReviewFormValidate = Yup.object().shape({
+  name: Yup.string()
+    .min(3, "Minimum 3 Character")
+    .max(80, "Maximum 80 Characters")
+    .required("Name is required"),
+  email: Yup.string()
+    .email("Wrong email format")
+    .nullable(),
+  mobile_number: Yup.string()
+    .min(10,"Please enter a valid 10 digit mobile number, without special characters and spaces")
+    .required("Mobile number is required")
+    .matches(/^[1-9][0-9]{9}$/,"Mobile number is not valid Cannot contain special characters or spaces"),
+  review_text: Yup.string()
+    .min(10, "Minimum 10 Character")
+    .max(150, "Maximum 150 Character")
+    .required("Review Text is Required"),
+},[]);
+
+export default function ReviewModal ({ show, handleClose, data  } :  Props) {
   const [loading, setLoading] = useState(false);
   const [toggle, setToggle] = useState<string>("write");
   const [reviews, setReviews] = useState<ReviewFormModel>(InitReviewForm);
@@ -35,7 +74,7 @@ const ReviewModal: React.FC<Props> = ({ show, handleClose, data  }) => {
         setSubmitting(false);
         setLoading(false);
       } else { 
-        addReviews({
+        axios.post(`https://admin.pocketsite.me/items/reviews`, {
           ...values, user_template_id: data[0]?.id!, status: "Published"
         })
           .then((res : any) => {
@@ -63,8 +102,9 @@ const ReviewModal: React.FC<Props> = ({ show, handleClose, data  }) => {
 
    const getReviewsData = () => {
      if (data[0]?.id!) {
-       getReviewsByTemplateID(data[0]?.id!)
-         .then((res: any) => {
+      axios.get(
+        `https://admin.pocketsite.me/items/reviews?filter[user_template_id][_eq]=${data[0]?.id!}&limit=10`
+      ).then((res: any) => {
            setReviewsCount(res.data.data.length);
            setReviews(res.data.data);
          })
@@ -242,9 +282,9 @@ const ReviewModal: React.FC<Props> = ({ show, handleClose, data  }) => {
                         </tr>
                       </thead>
                       <tbody className="mb-0">
-                        {Object.values(reviews).map((rev: any) => {
+                        {Object.values(reviews).map((rev: any, index: number) => {
                           return (
-                            <tr>
+                            <tr key={index}>
                               <td className="r-name">{rev.name}</td>
                               <td>{rev.review_text}</td>
                             </tr>
@@ -299,5 +339,3 @@ const ReviewModal: React.FC<Props> = ({ show, handleClose, data  }) => {
       {/*end::Form*/} 
     </Modal>
 };
-
-export { ReviewModal }
