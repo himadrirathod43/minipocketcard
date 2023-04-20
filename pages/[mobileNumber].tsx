@@ -42,12 +42,12 @@ const UserByMobileNumber : React.FC<Props> = ({ user }) => {
     <>
     {/* {console.log('user.data[0]', user?.data[0])}
     {console.log('user.data[0]', `https://admin.pocketsite.me/assets/${user?.data[0]?.profile_image?.filename_disk}`)} */}
-      {/* <Head>
+      <Head>
         <title>{user.data[0]?.firstName ? user.data[0]?.firstName + " " + user.data[0]?.lastName : "Title"}</title>      
-        <meta name="title" content={`${user.data[0]?.firstName ? user.data[0]?.firstName + " " + user.data[0]?.lastName : "Username"}`} />
+        <meta name="title" content={`${user.data[0]?.firstName ? user.data[0]?.firstName + " " + user.data[0]?.lastName + " | " + user.data[0]?.designation + " | Pocketsite" : "Title"}`} />
         <meta name="description" content={`${user.data[0]?.description ? user.data[0]?.description : "Description"}`} key="desc" />
         <meta property="og:name" content={`${user.data[0]?.firstName ? user.data[0]?.firstName + " " + user.data[0]?.lastName : "Username"}`} />
-        <meta property="og:title"  content={`${user.data[0]?.firstName ? user.data[0]?.firstName + " " + user.data[0]?.lastName : "Username"}`} />
+        <meta property="og:title" content={`${user.data[0]?.firstName ? user.data[0]?.firstName + " " + user.data[0]?.lastName + " | " + user.data[0]?.designation + " | Pocketsite" : "Title"}`} />
         <meta property="og:description" content={`${user.data[0]?.description ? user.data[0]?.description : "Description"}`} key="desc" />
         <meta property="og:url" content="https://pocketsite.me/" />
         <meta property="og:type" content="website" />
@@ -66,19 +66,19 @@ const UserByMobileNumber : React.FC<Props> = ({ user }) => {
         />
         <meta property="og:image:width" content="250" />
         <meta property="og:image:height" content="250" />
-        <link rel="shortcut icon" href={`https://admin.pocketsite.me/assets/${user?.data[0]?.profile_image?.filename_disk}`} /> */}
+        <link rel="shortcut icon" href={`https://admin.pocketsite.me/assets/${user?.data[0]?.profile_image?.filename_disk}`} />
 
         {/* For Twitter */}
-        {/* <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:domain" content="https://pocketsite.me/" />
         <meta name="twitter:site" content="https://pocketsite.me/" />
         <meta name="twitter:creator" content={`${user.data[0]?.firstName ? user.data[0]?.firstName + " " + user.data[0]?.lastName + " | " + user.data[0]?.designation + " | Pocketsite" : "Title"}`} />
         <meta name="twitter:title" content={`${user.data[0]?.firstName ? user.data[0]?.firstName + " " + user.data[0]?.lastName + " | " + user.data[0]?.designation + " | Pocketsite" : "Title"}`} />
         <meta name="twitter:description" content={`${user.data[0]?.description ? user.data[0]?.description : "Description"}`} />
-        <meta name="twitter:image" content={`https://admin.pocketsite.me/assets/${user?.data[0]?.profile_image?.filename_disk}`} /> */}
+        <meta name="twitter:image" content={`https://admin.pocketsite.me/assets/${user?.data[0]?.profile_image?.filename_disk}`} />
       
         {/* For LinkedIn */}
-        {/* <meta name="title" property="og:title"  content={`${user.data[0]?.firstName ? user.data[0]?.firstName + " " + user.data[0]?.lastName : "Username"}`} />
+        <meta name="title" property="og:title"  content={`${user.data[0]?.firstName ? user.data[0]?.firstName + " " + user.data[0]?.lastName : "Username"}`} />
         <meta property="og:type" content="website" />
         <meta name="image" property="og:image" content={`https://admin.pocketsite.me/assets/${user?.data[0]?.profile_image?.filename_disk}`} />
         <meta name="description" property="og:description" content={`${user.data[0]?.description ? user.data[0]?.description : "Description"}`} />
@@ -87,9 +87,9 @@ const UserByMobileNumber : React.FC<Props> = ({ user }) => {
         <meta prefix="og: http://ogp.me/ns#" property="og:description" content={`${user.data[0]?.description ? user.data[0]?.description : "Description"}`} />
         <meta prefix="og: http://ogp.me/ns#" property="og:image" content={`https://admin.pocketsite.me/assets/${user?.data[0]?.profile_image?.filename_disk}`} />
 
-      </Head> */}
+      </Head>
       
-      <NextSeo
+      {/* <NextSeo
         title={`${user.data[0]?.firstName ? user.data[0]?.firstName + " " + user.data[0]?.lastName + " | " + user.data[0]?.designation + " | Pocketsite" : "Title"}`}
         description={`${user.data[0]?.description ? user.data[0]?.description : "Description"}`}
         canonical="https://pocketsite.me/"
@@ -160,7 +160,7 @@ const UserByMobileNumber : React.FC<Props> = ({ user }) => {
           maxImagePreview: 'none',
           maxVideoPreview: -1,
         }}
-      />
+      /> */}
       <Suspense fallback={<div style={{ color: "transparent linear-gradient(270deg,#7159d6,#06b9bb) 0 0 no-repeat padding-box" , textAlign : "center" }}><Loading /></div>}>{views}</Suspense>
     </>
   );

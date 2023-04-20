@@ -3,6 +3,15 @@ const path = require('node:path');
 
 const nextConfig = {
   reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/7046304593',
+        permanent: false,
+      }
+    ]
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
