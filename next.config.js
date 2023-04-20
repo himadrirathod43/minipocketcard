@@ -7,7 +7,7 @@ const nextConfig = {
     return [
       {
         source: '/',
-        destination: '/7046304593',
+        destination: '/[mobileNumber]',
         permanent: false,
       }
     ]
